@@ -3,7 +3,7 @@ import * as utils from '../common/utils'
 import * as lang from './lang'
 import { fetchSSE } from './utils'
 
-export type TranslateMode = 'translate' | 'polishing' | 'summarize'
+export type TranslateMode = 'translate' | 'polishing' | 'activeLearner'
 
 export interface TranslateQuery {
     text: string
@@ -59,12 +59,12 @@ export async function translate(query: TranslateQuery) {
                 assistantPrompt = `polish this text in ${lang.langMap.get(query.detectFrom) || query.detectFrom}`
             }
             break
-        case 'summarize':
-            systemPrompt = "You are a text summarizer, you can only summarize the text, don't interpret it."
+        case 'activeLearner':
+            systemPrompt = "You are a text question and answer, you can only generate questions and answers the text, don't interpret it."
             if (toChinese) {
                 assistantPrompt = '用最简洁的语言使用中文总结此段文本'
             } else {
-                assistantPrompt = `summarize this text in the most concise language and muse use ${
+                assistantPrompt = `generate questions and answer in Q and A format, you must use ${
                     lang.langMap.get(query.detectTo) || query.detectTo
                 } language!`
             }

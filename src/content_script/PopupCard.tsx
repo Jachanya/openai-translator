@@ -296,8 +296,8 @@ export function PopupCard(props: IPopupCardProps) {
                 case 'polishing':
                     setActionStr('Polishing...')
                     break
-                case 'summarize':
-                    setActionStr('Summarizing...')
+                case 'activeLearner':
+                    setActionStr('QA...')
                     break
             }
             let isStopped = false
@@ -330,8 +330,8 @@ export function PopupCard(props: IPopupCardProps) {
                                 case 'polishing':
                                     setActionStr('Polished')
                                     break
-                                case 'summarize':
-                                    setActionStr('Summarized')
+                                case 'activeLearner':
+                                    setActionStr('QAGenerated')
                                     break
                             }
                         }
@@ -480,12 +480,12 @@ export function PopupCard(props: IPopupCardProps) {
                                             <IoColorPaletteOutline />
                                         </Button>
                                     </StatefulTooltip>
-                                    <StatefulTooltip content='Summarize' placement='top' showArrow>
+                                    <StatefulTooltip content='QuestionAnswer' placement='top' showArrow>
                                         <Button
                                             size='mini'
-                                            kind={translateMode === 'summarize' ? 'primary' : 'secondary'}
+                                            kind={translateMode === 'activeLearner' ? 'primary' : 'secondary'}
                                             onClick={() => {
-                                                setTranslateMode('summarize')
+                                                setTranslateMode('activeLearner')
                                                 setDetectTo(detectFrom)
                                             }}
                                         >
